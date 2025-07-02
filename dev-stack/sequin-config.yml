@@ -1,0 +1,61 @@
+account:
+  name: "Pollen Sequin"
+
+users:
+  - account: "Pollen Sequin"
+    email: "donghuuhieu1520@gmail.com"
+    password: "Asd123456!"
+
+databases:
+  - name: "pollen"
+    username: "pollen"
+    password: "pollen"
+    hostname: "pollen_db"
+    database: "pollen"
+    port: 5432
+    slot:
+      name: "pollen_sequin_slot"
+      create_if_not_exists: true
+    publication:
+      name: "pollen_sequin_pub"
+      create_if_not_exists: true
+      init_sql: |-
+        create publication pollen_sequin_pub for all tables
+
+sinks:
+  - name: "pollen-elasticsearch-sink"
+    database: "pollen"
+    transform: "pollen-transform"
+    source:
+      include_tables:
+        - "public.product"
+    status: "active"
+    actions:
+      - insert
+      - update
+      - delete
+    message_grouping: false
+    tables:
+      - name: "public.product"
+    batch_size: 1
+    destination:
+      type: "elasticsearch"
+      endpoint_url: "http://elasticsearch:9200"
+      index_name: "product"
+      auth_type: "api_key" # not really using this because we don't have authentication for elasticsearch
+      auth_value: "dummy" # we set this to empty string because we don't have authentication for elasticsearch
+      batch_size: 100
+
+functions:
+  - name: "pollen-transform"
+    description: "Transform product data"
+    type: "transform"
+    code: |-
+      def transform(_action, record, _changes, _metadata) do
+        %{
+          id: record["id"],
+          name: record["name"],
+          description: record["description"],
+          sku: record["sku"]
+        }
+      end
