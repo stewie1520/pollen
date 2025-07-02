@@ -1,3 +1,5 @@
+[![Build](https://github.com/stewie1520/pollen/actions/workflows/build.yml/badge.svg)](https://github.com/stewie1520/pollen/actions/workflows/build.yml)
+
 # Pollen Product Search Platform
 
 A modern product search platform for e-commerce, featuring fast search, product management, and developer-friendly APIs. Built with Docker, Node.js, and Kafka for scalable, local-first development.
