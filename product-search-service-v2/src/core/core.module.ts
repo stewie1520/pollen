@@ -1,10 +1,10 @@
 import { Logger, Module, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { CqrsModule } from '@nestjs/cqrs';
-import { ElasticsearchModule } from '@nestjs/elasticsearch';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { APP_FILTER } from '@nestjs/core';
+import { CqrsModule } from '@nestjs/cqrs';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { ElasticsearchModule } from '@nestjs/elasticsearch';
 import { CreateListingChannelCommandHandler } from './application/commands/create-listing-channel/create-listing-channel.command';
 import { DeleteListingVariantFromChannelCommandHandler } from './application/commands/delete-listing-variant-from-channel/delete-listing-variant-from-channel.command';
 import { TransformAndIndexListingChannelCommandHandler } from './application/commands/transform-and-index-listing-channel/transform-and-index-listing-channel.command';

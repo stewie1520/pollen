@@ -53,8 +53,6 @@ export class SeedListingsCommand extends CommandRunner {
           const category = await categoryRepo.save(
             new CategoryModel({
               name: categoryData.name,
-              createdBy: 'system',
-              updatedBy: 'system',
             }),
           );
 
@@ -63,8 +61,6 @@ export class SeedListingsCommand extends CommandRunner {
               new SubCategoryModel({
                 name: subCategoryName,
                 category,
-                createdBy: 'system',
-                updatedBy: 'system',
               }),
             );
 

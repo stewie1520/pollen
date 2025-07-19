@@ -5,8 +5,8 @@ export const generateWarehouse = (
   partials: Partial<WarehouseProps> = {},
 ): Warehouse => {
   return Warehouse.create({
-    ...partials,
     name: 'Singapore Warehouse',
     country: generateCountry(partials.country).getProps(),
+    ...partials,
   });
 };

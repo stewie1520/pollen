@@ -2,16 +2,16 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  Index,
   JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  Index,
 } from 'typeorm';
 import { ListingModel } from './listing';
-import { BatchModel } from './warehouses';
 import { ListingChannelModel } from './listing-channel';
+import { BatchModel } from './warehouses';
 
 @Entity()
 @Index('idx_listing_variant_sku', ['sku'])
@@ -53,10 +53,7 @@ export class ListingVariantModel {
   updatedAt: Date;
 
   constructor(
-    data?: Omit<
-      Partial<ListingVariantModel>,
-      'listingChannel' | 'createdAt' | 'updatedAt'
-    >,
+    data?: Omit<Partial<ListingVariantModel>, 'createdAt' | 'updatedAt'>,
   ) {
     if (data) {
       Object.assign(this, data);

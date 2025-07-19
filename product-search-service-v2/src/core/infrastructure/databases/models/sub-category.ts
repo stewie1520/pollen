@@ -30,17 +30,8 @@ export class SubCategoryModel {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column()
-  createdBy: string;
-
-  @Column()
-  updatedBy: string;
-
   constructor(
-    data?: Omit<
-      Partial<SubCategoryModel>,
-      'categoryId' | 'createdAt' | 'updatedAt'
-    >,
+    data?: Omit<Partial<SubCategoryModel>, 'createdAt' | 'updatedAt'>,
   ) {
     if (data) {
       Object.assign(this, data);

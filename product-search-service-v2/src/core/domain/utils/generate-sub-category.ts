@@ -5,11 +5,11 @@ export const generateSubCategory = (
   partials: Partial<SubCategoryProps> = {},
 ): SubCategory => {
   return SubCategory.create({
-    ...partials,
     name: 'Face Cleansers',
     category: generateCategory({
       ...partials.category,
       name: 'SKIN_CARE',
     }).getProps(),
+    ...partials,
   });
 };

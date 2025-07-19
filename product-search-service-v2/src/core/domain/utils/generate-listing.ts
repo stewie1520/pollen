@@ -6,9 +6,9 @@ export const generateListing = (
   partials: Partial<ListingProps> = {},
 ): Listing => {
   return Listing.create({
-    ...partials,
     listingNo: 'LST-001',
     status: ListingStatusEnum.ACTIVE,
     subCategory: generateSubCategory(partials.subCategory).getProps(),
+    ...partials,
   });
 };

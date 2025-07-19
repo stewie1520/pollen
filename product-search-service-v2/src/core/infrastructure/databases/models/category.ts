@@ -25,12 +25,6 @@ export class CategoryModel {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column()
-  createdBy: string;
-
-  @Column()
-  updatedBy: string;
-
   constructor(
     data?: Omit<
       Partial<CategoryModel>,

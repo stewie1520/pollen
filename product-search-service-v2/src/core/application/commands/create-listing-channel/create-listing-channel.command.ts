@@ -25,7 +25,7 @@ export class CreateListingChannelCommand implements ICommand {
 
 @CommandHandler(CreateListingChannelCommand)
 export class CreateListingChannelCommandHandler
-  implements ICommandHandler<CreateListingChannelCommand>
+  implements ICommandHandler<CreateListingChannelCommand, string>
 {
   constructor(
     private readonly listingChannelRepository: ListingChannelRepository,
@@ -61,5 +61,7 @@ export class CreateListingChannelCommandHandler
 
     await this.listingChannelRepository.save(listingChannel);
     this.eventBus.publish(new ListingChannelCreatedEvent(listingChannel.id));
+
+    return listingChannel.id;
   }
 }

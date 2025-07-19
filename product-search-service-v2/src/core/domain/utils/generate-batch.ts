@@ -4,7 +4,6 @@ import { generateWarehouse } from './generate-warehouse';
 
 export const generateBatch = (partials: Partial<BatchProps> = {}): Batch => {
   return Batch.create({
-    ...partials,
     batchNo: 'BATCH-001',
     batchImageId: 'image-123',
     pkgQty: 100,
@@ -23,5 +22,6 @@ export const generateBatch = (partials: Partial<BatchProps> = {}): Batch => {
     updatedAt: new Date(),
     updatedBy: 'system',
     createdBy: 'system',
+    ...partials,
   });
 };
