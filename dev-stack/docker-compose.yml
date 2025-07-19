@@ -62,7 +62,7 @@ services:
       - my_network
 
   elasticsearch:
-    image: elasticsearch:8.14.0
+    image: elasticsearch:9.0.3
     container_name: pollen_elasticsearch
     environment:
       discovery.type: single-node

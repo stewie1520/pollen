@@ -1,0 +1,5 @@
+export enum SaleChannelEnum {
+  MARKETPLACE = 'MARKETPLACE',
+  PHYSICAL_STORE = 'PHYSICAL_STORE',
+  OTHER = 'OTHER',
+}
