@@ -1,7 +1,9 @@
 import { zValidator } from "@hono/zod-validator";
 import { randomUUID } from "crypto";
+import { eq } from "drizzle-orm";
 import { Hono } from "hono";
 import { z } from "zod";
+
 import { db, Product } from "../db";
 import { publisherService } from "../pubsub";
 import { productSearchService } from "../search-engine";
@@ -59,3 +61,26 @@ productRouter.post(
     });
   },
 );
+
+productRouter.patch(
+  "/:id",
+  zValidator("json", z.object({
+    name: z.string().optional(),
+    description: z.string().optional(),
+    sku: z.string().optional(),
+  })),
+  async (c) => {
+    const { id } = c.req.param();
+    const { name, description, sku } = c.req.valid("json");
+
+    await db.update(Product).set({
+      name,
+      description,
+      sku,
+    }).where(eq(Product.id, id));
+
+    return c.json({
+      updated: 1,
+    });
+  },
+)

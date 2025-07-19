@@ -11,5 +11,5 @@ export const Product = pgTable("product", {
   updatedAt: timestamp("updatedAt")
     .notNull()
     .defaultNow()
-    .$onUpdate(() => sql`(now() AT TIME ZONE 'utc'::text)`),
+    .$onUpdate(() => new Date()),
 });
